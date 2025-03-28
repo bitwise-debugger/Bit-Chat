@@ -11,7 +11,8 @@ const USER_SCHEMA = new Schema({
         about:{
             type:String,
             maxLength:50,
-            minLength:5
+            minLength:5,
+            default:`Hey there, I'm using Bit Chat`,
         },
         date_updated:{
             type:Date,

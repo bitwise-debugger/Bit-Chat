@@ -1,0 +1,21 @@
+:root {
+    --lightColor: #f7f7f7;
+    --teal-green-dark: #075E54;
+    --teal-green: #128C7E;
+    --light-green: #25D366;
+    --tea-green: #DCF8C6;
+    --blue: #34B7F1;
+    --light-gray: #ECE5DD;
+}
+
+body {
+    padding: 0px 0px 0px;
+
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+main {
+    flex-grow: 1;
+}

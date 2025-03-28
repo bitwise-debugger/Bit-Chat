@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const session = require('express-session');
+const moment = require('moment');
 
 const multer = require('multer');
 // Application Settings
@@ -19,6 +20,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use('/profiles', express.static(path.join(__dirname, 'profiles')));
 // Multer Settings
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -116,9 +118,13 @@ app.post('/login', async (req, res) => {
             req.session.user = {
                 id: foundUser._id,
                 name: foundUser.name,
+                bio: foundUser.bio,
                 email: foundUser.email,
+                mobile: foundUser.mobile,
+                date_created :foundUser.date_created,
                 profile_path: foundUser.profile_path
             };
+            req.session.user.bio.date_updated = moment(req.session.user.bio.date_updated).format(" 📅 MMMM D, YYYY [at] h:mm A")
             res.status(200).json({ success: true, message: 'Login Success' });
         } else {
             return res.status(400).json({ success: false, message: 'Wrong Password!' })
