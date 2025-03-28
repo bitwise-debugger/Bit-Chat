@@ -70,9 +70,13 @@ app.post('/register', upload.single('image'), async (req, res) => {
         profile_path = `/profiles/${req.file.filename}`;
     } else {
         profile_path = `/profiles/default.png`;
+        return res.status(400).json({ success: false, message: "Upload a DP" });
     }
     if (!name || !email || !mobile || !password) {
         return res.status(400).send("All fields are required!");
+    }
+    if (password.length < 6) {
+        return res.status(400).json({ success: false, message: "Improve Password, Altleast 6 Characters" });
     }
 
     let existingUser = await User.findOne({ email });
@@ -83,7 +87,6 @@ app.post('/register', upload.single('image'), async (req, res) => {
     if (existingUser) {
         return res.status(400).json({ success: false, message: "Phone Number already exists!" });
     }
-
     const USER = new User({
         name: name,
         email: email,
@@ -91,9 +94,15 @@ app.post('/register', upload.single('image'), async (req, res) => {
         password: password,
         profile_path: profile_path,
     });
-    await USER.save();
+    try {
+        await USER.save();
+    } catch (err) {
+        console.log(err.message);
+        return res.status(400).json({ success: false, message: err.message.split(':')[2].trim() });
+    }
     res.status(200).json({ success: true, message: 'Registeration Successfull' });
 });
+
 app.post('/login', async (req, res) => {
     let { email, password } = req.body;
     let foundUser = await User.findOne({ email });

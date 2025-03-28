@@ -95,8 +95,5 @@ form input[type="file"]{
         width: 20px;
     }
     
-    animation-name: translateX_300;
-    animation-delay: 2s;
-    
     display: none;
 }

@@ -34,7 +34,7 @@ const USER_SCHEMA = new Schema({
     },
     password:{
         type:String,
-        minLength:6,
+        minLength:[6,"Password Should be of altleast 6 Characters"],
         required:true
     },
     profile_path:{
