@@ -19,11 +19,13 @@
   },
   "homepage": "https://github.com/Mohsin-Gondal/Bit-Chat#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
+    "ejs-mate": "^4.0.0",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
     "helmet": "^8.1.0",

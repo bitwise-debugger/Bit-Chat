@@ -27,6 +27,21 @@ a:hover {
     --tea-green: #DCF8C6;
     --blue: #34B7F1;
     --light-gray: #ECE5DD;
+
+
+
+    --light-yellow: #fff9c4;
+    /* Light yellow for warnings */
+    --orange: #ff9800;
+    /* Orange for warning border */
+    --dark-orange: #e65100;
+    /* Dark orange text and icon */
+
+    --light-red: #ffcccb;
+    /* Light red for error background */
+    --red: #f44336;
+    /* Red for error border */
+    --dark-red: #d32f2f;
 }
 
 body {

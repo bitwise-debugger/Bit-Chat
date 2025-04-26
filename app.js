@@ -1,11 +1,15 @@
 // Imports
 const express = require('express');
 const app = express();
+const engine = require('ejs-mate');
 // Route Imports
 const authRoutes = require('./routes/authRoutes');
+// Middlware Imports
+const errorHandler = require('./middlewares/errorHandler');
 
 // Settings
 app.set('view engine', 'ejs');
+app.engine('ejs', engine);
 
 // Middlwares
 app.use(express.static('public'));
@@ -16,5 +20,5 @@ app.use(express.json());
 app.use('/user', authRoutes)
 
 
-
+app.use(errorHandler);
 module.exports = app;

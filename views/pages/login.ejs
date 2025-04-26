@@ -1,30 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="/css/login-signup/login.css">
-    <link rel="stylesheet" href="/css/utility/loading.css">
-    <link rel="stylesheet" href="/css/base/base.css">
-    <title>Login : Bit Chat</title>
-    <!-- Favicon -->
-     <link rel="icon" href="/img/wa-logo.png" type="image/x-icon">
-</head>
-<body>
-    <div class="msg"></div>
-    <div class="card">
-        <img src="/img/wa-logo.png" alt="">
-        <h3>BIT CHAT</h3>
-        <form method="POST" id="FORM" action="/user/signin" enctype="application/x-www-form-urlencoded">
-            <input class="input" type="email" name="email" placeholder="Enter Email" required>
-            <input class="input" type="password" name="password" placeholder="Enter Password" required>
-            <button class="btn btn-90" id="login-btn">Login</button>
-        </form>
-       <p class="new-to-bc">New to Bit Chat? <a href="/user/register">Register</a></p>
-    </div>
-   <script>
-    
-   </script>
-</body>
-</html>
+<% layout('layouts/login-signup')  %>
+<div class="card">
+    <img src="/img/wa-logo.png" alt="">
+    <h3>BIT CHAT</h3>
+    <form method="POST" id="FORM" action="/user/signin" enctype="application/x-www-form-urlencoded">
+        <input class="input" type="email" name="email" placeholder="Enter Email" required>
+        <input class="input" type="password" name="password" placeholder="Enter Password" required>
+        <button class="btn btn-90" id="login-btn">Login</button>
+    </form>
+    <p class="new-to-bc">New to Bit Chat? <a href="/user/register">Register</a></p>
+</div>

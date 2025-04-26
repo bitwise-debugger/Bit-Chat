@@ -4,34 +4,35 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
     fullname: {
         type: String,
-        required: [true, 'Full name is required'],
         trim: true,
-    },
-    email: {
-        type: String,
-        required: [true, 'Email is required'],
-        unique: true,
-        lowercase: true,
-        trim: true,
-        match: [/.+\@.+\..+/, 'Please fill a valid email address']
+        required: [true, 'Name is Required'],
     },
     number: {
         type: String,
-        required: [true, 'Phone number is required'],
-        unique: true,
-        match: [/^\d{10,15}$/, 'Please fill a valid phone number']
+        minlength: [9, 'Phone Number should be of atleast 9 digits'],
+        maxlength: [15, `Phone Number shouldn't be of more than 15 digits`],
+        unique: [true, 'Phone Number already exists'],
+        required: [true, 'Phone Number is Required'],
+    },
+    email: {
+        type: String,
+        unique: [true, 'Email already exists'],
+        trim: true,
+        lowercase: true,
+        required: [true, 'Email is Required'],
     },
     password: {
         type: String,
         required: [true, 'Password is required'],
-        minlength: [8, 'Password must be at least 8 characters']
+        minLength: [6, 'Password must be at least 8 characters'],
     },
     profile_path: {
         type: String,
-        default: '/images/default.png'
+        default: 'uploads/default.png',
     }
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
+
