@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const CustomError = require('../errors/CustomError');
 const bcrypt = require('bcrypt');
 module.exports.showLoginPage = (req, res) => {
     res.render('pages/login', { title: 'BitChat - Login' });
@@ -9,19 +10,19 @@ module.exports.showRegisterPage = (req, res) => {
 module.exports.signIn = async (req, res) => {
 
     let { email, password } = req.body;
-    if(!email){
-        throw new Error()
+    if (!email) {
+        throw new CustomError('ValidationError', 400, 'Email is required!');
     }
-    if(!password){
-
+    if (!password) {
+        throw new CustomError('ValidationError', 400, 'Password is required!');
     }
     let user = await User.findOne({ email });
     if (!user) {
-        return res.status(400).json({ status: 400, message: 'User not found', success: false });
+        throw new CustomError('NotFoundError', 400, 'No account found !');
     }
     const matchPassword = await bcrypt.compare(password, user.password);
     if (!matchPassword) {
-        return res.status(400).json({ status: 400, message: 'Wrong Password', success: false });
+        throw new CustomError('AuthorizationError', 400, 'Incorrect Password !');
     }
     res.status(200).json({ status: 200, message: 'Login Success', success: true });
 }
@@ -32,8 +33,9 @@ module.exports.signUp = async (req, res) => {
     try {
         let user = new User({ fullname, email, number, password: hashed_password, profile_path });
         await user.save();
-        res.send({ message: 'User Added' });
+        res.status(200).json({ status: 200, message: 'Account Created ', success: true });
     } catch (e) {
-        res.status(400).json({ status: 400, message: e.message, success: false });
+        throw new CustomError('Validation Error', 400, e.message);
+        // res.status(400).json({ status: 400, message: e.message, success: false });
     }
 }
