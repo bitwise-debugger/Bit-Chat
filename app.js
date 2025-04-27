@@ -5,6 +5,7 @@ const engine = require('ejs-mate');
 // Route Imports
 const authRoutes = require('./routes/authRoutes');
 const uiRoutes = require('./routes/uiRoutes');
+const chatRoutes = require('./routes/chatRoutes');
 // Middlware Imports
 const errorHandler = require('./middlewares/errorHandler');
 
@@ -19,7 +20,8 @@ app.use(express.json());
 
 // Routes
 app.use('/user', authRoutes)
-app.use('/ui',uiRoutes);
+app.use('/ui', uiRoutes);
+app.use('/chats', chatRoutes);
 
 
 app.use(errorHandler);

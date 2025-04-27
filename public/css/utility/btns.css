@@ -1,0 +1,17 @@
+.btn-svg{
+    height: 32px;
+    width: 32px;
+
+    padding: 0px;
+
+    border-radius: 50%;
+
+    background-color: transparent;
+
+    svg{
+        fill: var(--teal-green-dark);
+    }
+}
+.btn-svg:hover{
+    background-color: var(--light-gray);
+}

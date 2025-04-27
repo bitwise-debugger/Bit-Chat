@@ -24,7 +24,7 @@ form.addEventListener('submit', async function (e) {
             } else if (formType == 'register') {
                 window.location.href = '/user/login';
             }
-        }, 3000);
+        }, 1200);
     } catch (er) {
         createMessage('error', er.message)
     }
